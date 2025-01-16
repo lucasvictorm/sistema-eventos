@@ -1,0 +1,197 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body{
+    
+    height: 100vh;
+    background-color: #24006c;
+    
+}
+
+main{
+    background-color: #24006c;
+    
+    height: 100vh;
+}
+
+#div-background{
+    padding: 10px;
+    background-color: #24006c;
+    height: 100vh;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+
+    & a{
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        & img{
+            width: 50px;
+        }
+    }
+
+    & h2{
+        
+        color: white;
+        text-align: center;
+
+    }
+    
+    & p{
+        text-align: center;
+        color: white;
+
+    }
+}
+
+
+#div-form{
+    width: 50%;
+    margin-left: 50%;
+    background-color: white;
+    border-radius: 10px 0px 0px 10px;
+    z-index: 1;
+    padding: 20px;
+    padding-left: 40px;
+    
+    box-shadow: 0px 2px 4px #000000;
+}
+
+
+#campo-obrigatorio-p{
+    color: red;
+    font-size: 0.8em;
+}
+
+.asteristico{
+    color: red;
+}
+
+
+#div-minicursos{
+    text-align: center;
+    padding-top: 30px;
+    
+   
+
+    & h3{
+        
+        padding-bottom: 20px;
+        font-size: 1.5em;
+    }
+
+    & #totalP{
+        text-align: end;
+        font-weight: bold;
+
+        
+    }
+
+}
+
+
+
+
+#botao-confirmar, #div-confirmacao a{
+    background-color: #24006c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+  
+    margin-top: 20px;
+}
+
+#div-confirmar{
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+#div-confirmacao{
+    display: none;
+    height: 100vh;
+    padding-top: 40px;
+    flex-direction: column;
+    align-items: center;
+    & img{
+        width: 150px;
+    }
+}
+
+#div-formulario-principal{
+    padding-top: 40px;
+}
+
+#div-bloco-formulario{
+    width: 100%;
+}
+
+#btn-adicionar{
+    background-color: #24006c;
+    color: white;
+   
+}
+
+#lista-de-opcoes{
+    font-weight: bold;
+    padding: 20px;
+    text-align: start;
+}
+
+@media (max-width: 768px){
+    main{
+        padding: 0;
+        
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #div-background{
+        position: relative;
+        margin: 0;
+        text-align: center;
+        height: 50%;
+        width: 100%;
+        
+        & h2{
+            font-size: 1.5em;
+        }
+    }
+
+    #div-form{
+        padding: 10px;
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+        
+        border-radius: 10px 10px 0px 0px;
+    }
+}
+
+.lixeira{
+    cursor: pointer;
+    width: 100px;
+    text-align: center;
+}
+
+#tabela-opcoes{
+    margin-top: 20px;
+}
+
+#aviso-evento-selecionado{
+    display: none;
+    color: red;
+    text-align: end;
+    padding: 5px;
+    font-size: 15px;
+    padding-right: 20px
+}

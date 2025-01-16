@@ -1,0 +1,193 @@
+/*define uma fonte de arquivo*/
+@font-face {
+    font-family: 'Figtree';
+    src: 
+         url('Figtree-VariableFont_wght.ttf') format('truetype'); /* fallback */
+    font-weight: normal;
+    font-style: normal;
+  }
+
+
+
+/*reseta valores padrões*/
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Figtree', sans-serif;
+}
+
+/*suaviza a rolagem*/
+html{
+    scroll-behavior: smooth;
+}
+
+
+
+#container-geral{
+    margin-top: 180px;
+}
+
+/*configura efeito parallax*/
+.parallax{
+    height: 200px;
+    background-image: url('./imagens/parallax2.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    align-items: end;
+    background-size:cover;
+    padding: 20px;
+
+    & h1{
+        text-shadow: 5px 2px 7px black;;
+        padding-left:5%;
+        color: white;
+        
+    }
+}
+
+/*padroniza as sections*/
+section{
+    margin: auto;
+    max-width: 90vw;
+    
+    padding: 20px;
+
+    & p{
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+}
+
+#div-imagens{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+    align-items: center;
+   justify-content: center;
+
+    & img{
+        width: 100%;
+        max-width: 200px;
+        border-radius: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    #container-geral{
+        margin-top: 220px;
+    }
+
+    #div-imagens img{
+        max-width: 400px;
+    }
+
+    #starlink-logo{
+        margin-left: 100px;
+    }
+    
+}
+
+.subtitulo{
+    color: var(--secondary-color);
+    border-bottom: 2px solid var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+.subtitulo-centralizado{
+    color: var(--secondary-color);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.linha-destaque{
+    content: '';
+    display: block;
+    height: 4px;
+    width: 16%;
+    margin: auto;
+    margin-top: 40px;
+    background-color: var(--secondary-color);
+}
+
+a{
+    text-decoration: none;
+}
+
+.destaque{
+    color: var(--secondary-color);
+    font-weight: bold;
+
+
+}
+
+#div-mapa{
+    display: flex;
+    justify-content: center;
+}
+
+.div-borda-cinza{
+    border-bottom: 4px solid #d0d0d0;
+}
+
+.subtitulo-azul{
+    color: var(--tertiary-color);
+}
+
+.div-apoiador{
+    padding: 10px 0;
+    display: flex;
+    gap: 5px;
+
+    & .textos{
+        text-align: end;
+    }
+
+    & .textos h3{
+        text-align: center;
+    }
+    
+}
+
+.apoiador-logo{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 200px;
+    
+}
+
+.apoiador-logo img{
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .div-apoiador {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        & .textos{
+            text-align: center;
+        }
+    }
+
+    .apoiador-logo {
+        margin-bottom: 15px;
+    }
+    
+}
+
+#logo-uepa{
+    text-align: center;
+    padding-top: 20px;
+
+}
+
+#logo-uepa img{
+    width: 100%;
+    max-width: 200px;
+}

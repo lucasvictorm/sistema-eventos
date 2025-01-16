@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="inscricao.css">
+    <title>Inscrição</title>
+</head>
+<body>
+   
+
+    <main>
+        <div id="div-background">
+            <a href="index.html"><img src="imagens/seta-direita.png" alt=""></a>
+            
+                <img src="imagens/alunocadastro.png" alt="Ícone de aluno">
+            
+            
+            <h2>Participe do Evento CRES!</h2>
+
+            <p>Transforme seu futuro com nossas oficinas de ensino exclusivas. Cadastre-se no CRES e aproveite a oportunidade de aprender e se desenvolver com especialistas. Garanta sua vaga agora!</p>
+            
+        </div>
+        <div id="div-form">
+            <div id="div-formulario-principal">
+                <h2 id="cadastro-h2">Inscrição no evento</h2>
+            <p><strong>Entre com seus dados</strong></p>
+            <form id="formulario" class="needs-validation" novalidate>
+                <div id="div-bloco-formulario" class="row g-3">
+                    
+                    <div class="col-6">
+                        <label for="nome" class="form-label">Nome Completo <span class="asteristico">*</span></label>
+                      <input  type="text" class="form-control" aria-label="Nome completo" id="nome" name="nome" required>
+                      <div class="invalid-feedback">
+                        Preencha seu nome
+                      </div>
+                    </div>
+                    <div class="col-6">
+                        <label for="cpf" class="form-label">CPF <span class="asteristico">*</span></label>
+                      <input required type="text" name="cpf" class="form-control" aria-label="CPF" id="cpf">
+                      <div class="invalid-feedback">
+                        Preencha seu CPF
+                      </div>
+                    </div>
+
+                    <div class="col-6">
+                        <label for="data-nascimento" class="form-label">Data de nascimento <span class="asteristico">*</span></label>
+                        <input required type="date" name="dataDeNasc" class="form-control" id="data-nascimento">
+                        <div class="invalid-feedback">
+                            Informe sua data de nascimento
+                          </div>
+       
+                    </div>
+
+                    <div class="col-6">
+                        <label for="categoria" class="form-label">Categoria <span class="asteristico">*</span></label>
+                        <select required class="form-select" name="categoria" id="Categoria">
+                            <option value="estudante">Estudante</option>
+                            <option value="professor">Professor</option>
+                            <option value="pesquisador">Profissional de TI</option>
+
+
+                        </select>
+                        
+                    </div>
+
+                    
+                        <div class="col-6">
+                            <label for="email" class="form-label">Email <span class="asteristico">*</span></label>
+                          <input required type="email" name="email" class="form-control" aria-label="email" id="email">
+                          <div class="invalid-feedback">
+                            Informe um email válido
+                          </div>
+                        </div>
+
+                        
+                        <div class="col-6">
+                            <label for="whatsapp" class="form-label">Whatsapp </label>
+                          <input type="number" name="whatsapp" class="form-control" aria-label="whatsapp" id="nome">
+                        </div>
+
+                        <p id="campo-obrigatorio-p">* Campo obrigatório</p>
+                    
+                  </div>
+                  
+
+                  
+
+                  
+                 
+                  
+
+            </form>
+
+            <div id="div-minicursos">
+              <h3>Selecione seus minicursos e palestras</h3>
+
+              <div class="row">
+                  <div class="col-4">
+                      <select onchange="listarOpcoes()" class="form-select" name="palestraMinicurso" id="palestraMinicurso">
+                      <option value="Palestra">Palestra</option>
+                      <option value="Minicurso">Minicurso</option>
+                  </select>
+                  </div>
+                  
+                  
+                  <div class="col-4" onchange="alterarOpcao()">
+                      <select class="form-select col-4" name="opcoes" id="opcoes">
+                          
+                      </select>
+                  </div>
+
+                  <button id="btn-adicionar" type="button" onclick="adicionarEscolha()" class="btn col-4">Adicionar</button>
+                  <p id="aviso-evento-selecionado">Evento já selecionado</p>
+                  
+              </div>
+              
+             
+             
+
+              <table id="tabela-opcoes" class="table">
+                
+                <tbody id="lista-de-opcoes">
+                  
+
+                </tbody>
+
+              </table>
+              <div>
+                  <p id="totalP">Total: R$ <span id="total">20,00</span></p>
+              </div>
+            </div>
+            <div id="div-confirmar">
+              <button class="btn" type="submit" form="formulario" id="botao-confirmar" >Confirmar inscrição</button>
+            </div>
+            
+            </div>
+            
+            
+            
+        <div id="div-confirmacao" class="container">
+            <img src="imagens/checked.png" alt="Imagem de confirmação">
+            <p>Inscrição realizada com sucesso!</p>
+            <a href="index.html" class="btn">Retornar para a tela principal</a>
+        </div>
+        </div>
+       
+    </main>
+    
+
+
+    
+
+</body>
+
+
+<script src="inscricao.js"></script>
+
+
+  
+</html>
+<!-- <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1b5cb1"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>-->

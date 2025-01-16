@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <style>
+        main{
+            max-width: 600px;
+            margin: auto;
+        }
+
+        h1{
+            text-align: center;
+        }
+
+        button{
+            margin: 20px 0;
+        }
+
+        .form-group{
+            margin-bottom: 20px;
+        }
+    </style>
+  </head>
+
+<body>
+    <main>
+
+    
+  
+
+    <h1>Cadastro de Evento</h1>
+    <form id="formulario" enctype="multipart/form-data">
+        <!-- Nome do evento -->
+        <div class="form-group">
+            <label for="nome-evento">Nome do evento:</label>
+            <input type="text" id="nome-evento" name="nome-evento" class="form-control" placeholder="Digite o nome do evento" required>
+        </div>
+
+        <!-- Logo do evento -->
+        <div class="form-group">
+            <label for="logo-evento">Logo do evento:</label>
+            <input type="file" id="logo-evento" name="logo-evento" class="form-control" accept="image/*">
+        </div>
+
+        <!-- Imagem de fundo -->
+        <div class="form-group">
+            <label for="imagem-fundo">Imagem de fundo:</label>
+            <input type="file" id="imagem-fundo" name="imagem-fundo" class="form-control" accept="image/*">
+        </div>
+
+        <div class="row form-group">
+            <div class="col">
+                <label for="corPrimaria">Cor primária</label>
+                <input type="text" id="corPrimaria" name="corPrimaria" placeholder="#ffffff" class="form-control">
+            </div>
+            <div class="col">
+                <label for="corSecundaria">Cor secundária</label>
+                <input type="text" id="corSecundaria" name="corSecundaria" placeholder="#ffffff" class="form-control">
+            </div>
+            <div class="col">
+                <label for="corTerciaria">Cor terciária</label>
+                <input type="text" id="corTerciaria" name="corTerciaria" placeholder="#ffffff" class="form-control">
+            </div>
+          </div>
+
+        <!-- Sobre o evento -->
+        <div class="form-group">
+            <label for="sobre-evento">Sobre o evento:</label>
+            <textarea id="sobre-evento" name="sobre-evento" class="form-control" rows="4" placeholder="Descreva o evento" ></textarea>
+        </div>
+
+        <!-- O que esperar -->
+        <div class="form-group">
+            <label for="o-que-esperar">O que esperar:</label>
+            <textarea id="o-que-esperar" name="o-que-esperar" class="form-control" rows="4" placeholder="Descreva o que os participantes podem esperar" ></textarea>
+        </div>
+
+        <!-- Data do evento -->
+        <div class="form-group">
+            <label for="data-evento">Data do evento:</label>
+            <input type="date" id="data-evento" name="data-evento" class="form-control" >
+        </div>
+
+        <div class="form-group">
+            <label for="hora-evento">Hora do evento:</label>
+            <input type="time" id="hora-evento" name="hora-evento" class="form-control" >
+        </div>
+
+        <!-- Inscrições -->
+        <div class="form-group">
+            <label for="taxa-inscricao">Taxa de inscrição (R$):</label>
+            <input type="number" id="taxa-inscricao" name="taxa-inscricao" class="form-control" placeholder="Digite o valor da inscrição" step="0.01" min="0">
+        </div>
+        
+
+        <!-- Botão de envio -->
+        <button type="submit" class="btn btn-success">Cadastrar Evento</button>
+    </form>
+</main>
+</body>
+<script src="gerenciador.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</html>
