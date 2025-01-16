@@ -76,6 +76,15 @@
 
         <h2 class="subtitulo">O que esperar?</h2>
 
+        <?php 
+
+                $expectativa = mysqli_query($conexao, 'select Expectativa from eventos');
+                $expectativa = mysqli_fetch_assoc($expectativa);
+                $expectativa = $expectativa['Expectativa'];
+
+                echo("<p>" . nl2br($expectativa) . "</p>");
+        ?>
+        <!--
         <ul>
             <li>
                 <p>
@@ -103,10 +112,60 @@
                 
             </li>
         </ul>
-        
+        -->
+
         <h2 class="subtitulo">Data e inscrições</h2>
-        <p>O evento ocorrerá no dia <span class="destaque">16 de Fevereiro, às 8:00 horas</span> </p>
-        <p>Inscrição por apenas R$ 20,00</p>
+
+        <?php
+            // Data atual
+            
+            $dados = mysqli_query($conexao, 'select DataInicio, Hora, Taxa from eventos');
+            $dados = mysqli_fetch_assoc($dados);
+            $data = $dados['DataInicio'];
+
+            $hora = $dados['Hora'];
+            $taxa = $dados['Taxa'];
+
+            $hora = date("H:i", strtotime($hora));
+
+            // Separando o dia e o mês
+            $dia = date("d", strtotime($data)); // Extrai o dia
+            $mesNumerico = date("m", strtotime($data)); // Extrai o mês numérico
+
+            // Convertendo o mês numérico para o nome do mês
+            $mesPorExtenso = [
+                "01" => "Janeiro",
+                "02" => "Fevereiro",
+                "03" => "Março",
+                "04" => "Abril",
+                "05" => "Maio",
+                "06" => "Junho",
+                "07" => "Julho",
+                "08" => "Agosto",
+                "09" => "Setembro",
+                "10" => "Outubro",
+                "11" => "Novembro",
+                "12" => "Dezembro",
+            ];
+
+            $nomeMes = $mesPorExtenso[$mesNumerico];
+
+             // Exemplo de valor vindo do banco
+
+            // Formata para o padrão brasileiro (R$ 26,33)
+            $precoFormatado = "R$ " . number_format($taxa, 2, ',', '.');
+
+             
+            
+
+            // Exibindo o resultado
+        echo(" <p>O evento ocorrerá no dia <span class='destaque'>$dia de $nomeMes, às $hora horas</span> </p>");
+
+        echo("<p>Inscrição por apenas R$ $precoFormatado</p>");
+            
+        ?>
+        
+        
         <p>Você pode se inscrever <a href="./inscricao.html" class="destaque">clicando aqui</a></p>
         
         <!--Mapa incorporado-->

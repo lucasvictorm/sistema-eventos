@@ -42,7 +42,8 @@
         }
 
         .logo {
-            width: 100px;
+            width: 230px;
+            height: 120px;
         }
 
         .site-nav {

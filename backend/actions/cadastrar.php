@@ -14,6 +14,10 @@ $corPrimaria = $_POST['corPrimaria'];
 $corSecundaria = $_POST['corSecundaria'];
 $corTerciaria = $_POST['corTerciaria'];
 $sobre = trim($_POST['sobre-evento']);
+$oqEsperar = trim($_POST['o-que-esperar']);
+$data = $_POST['data-evento'];
+$hora = $_POST['hora-evento'];
+$taxa = $_POST['taxa-inscricao'];
 
 $extensao = pathinfo($imagem['name'], PATHINFO_EXTENSION);
 $nomeImagem = 'img_logo' . '.' . $extensao;
@@ -27,7 +31,7 @@ $caminhoLocal = '../../imagens/' . $nomeImagem;
     // Insere os dados no banco de dados
 move_uploaded_file($imagem['tmp_name'], $caminhoLocal);
 
-$sql = "INSERT INTO eventos (Titulo, Logo,CorPrimaria,CorSecundaria,CorTerciaria, Descricao) VALUES ('$nome_evento', '$caminhoImagem', '$corPrimaria', '$corSecundaria', '$corTerciaria', '$sobre')";
+$sql = "INSERT INTO eventos (Titulo, Logo,CorPrimaria,CorSecundaria,CorTerciaria, Descricao, Expectativa, DataInicio, hora, taxa) VALUES ('$nome_evento', '$caminhoImagem', '$corPrimaria', '$corSecundaria', '$corTerciaria', '$sobre', '$oqEsperar', '$data', '$hora', '$taxa')";
 $result = mysqli_query($conexao, $sql);
 
 $response = [];
