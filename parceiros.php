@@ -21,8 +21,11 @@
 </head>
 
 <body>
+    
     <!--div onde será carregado o cabeçalho remotamente-->
-    <div id="header-div"></div>
+    <div id="header-div"><?php 
+        include_once ('./cabecalho.php');
+    ?></div>
     
     <!--Bloco onde ficam os parceiros-->
     <section id="parceiros">
@@ -68,11 +71,7 @@
 </body>
 <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script>
-    fetch('cabecalho.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('header-div').innerHTML = data;
-      });
+    
 
     //carrega o rodapé remotamente
     fetch('rodape.html')

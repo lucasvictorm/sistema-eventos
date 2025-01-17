@@ -201,6 +201,15 @@
         <div id="div-mapa"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d957.1200821480579!2d-48.45199446827701!3d-1.4344599205879636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x92a48d2aeb3e38c9%3A0x4620051ef0c9d6d!2sCampus%20V%20-%20Centro%20de%20Ci%C3%AAncias%20Naturais%20e%20Tecnologia!5e0!3m2!1spt-BR!2sbr!4v1736967569726!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
     </section>
 
+    <section>
+        <div class="div-borda-cinza">
+            <h2 class="subtitulo-azul">Avisos</h2>
+        </div>
+        <div id="div-avisos">
+            
+        </div>
+
+    </section>
 
     
 
@@ -215,6 +224,8 @@
 
     <!--div onde será carregado o rodapé remotamente-->
     <div id="footer-div"></div>
+
+
 
 </div>
 </body>

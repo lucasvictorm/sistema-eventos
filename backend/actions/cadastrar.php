@@ -9,7 +9,7 @@ include_once("../database/conexaoEvento.php");
 mysqli_query($conexao, 'DELETE FROM `eventos`');
 mysqli_query($conexao, 'DELETE FROM `galeria`');
 
-$nome_evento = $_POST['nome-evento'];
+$nome_evento = htmlspecialchars($_POST['nome-evento'], ENT_QUOTES, 'UTF-8');
 $imagem = $_FILES['logo-evento'];
 $corPrimaria = $_POST['corPrimaria'];
 $corSecundaria = $_POST['corSecundaria'];

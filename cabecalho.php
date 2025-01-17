@@ -172,13 +172,13 @@
           <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
             <ul class="navbar-nav" id="nav-lista">
               <li class="nav-item">
-                <li><a href="./index.html" class="nav-link">Sobre o Evento</a></li>
+                <li><a href="./index.php" class="nav-link">Sobre o Evento</a></li>
               </li>
               <li class="nav-item">
-                <li><a href="./cronograma.html" class="nav-link">Cronograma</a></li>
+                <li><a href="./cronograma.php" class="nav-link">Cronograma</a></li>
               </li>
               <li class="nav-item">
-                <li><a href="./parceiros.html" class="nav-link">Parceiros</a></li>
+                <li><a href="./parceiros.php" class="nav-link">Parceiros</a></li>
               </li>
               <li class="nav-item">
                 <li><a href="./inscricao.html" id="inscricao" class="nav-link">Inscrição</a></li>

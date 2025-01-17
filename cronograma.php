@@ -9,8 +9,11 @@
 </head>
 
 <body>
+    
     <!--div onde será carregado o cabeçalho remotamente-->
-    <div id="header-div"></div>
+    <div id="header-div"> <?php 
+    include_once ('./cabecalho.php');
+    ?></div>
     <main class="container">
         <h2>Cronograma</h2>
 
@@ -157,12 +160,13 @@ function showSchedule(day) {
         showSchedule('domingo');
 
     //carrega o cabeçalho remotamente
+    /*
     fetch('cabecalho.html')
       .then(response => response.text())
       .then(data => {
         document.getElementById('header-div').innerHTML = data;
       });
-
+*/
     //carrega o rodapé remotamente
     fetch('rodape.html')
       .then(response => response.text())
