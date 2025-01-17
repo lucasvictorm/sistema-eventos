@@ -9,6 +9,8 @@
     href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"
     />
     <link rel="stylesheet" href="style.css">
+
+    
     
     <title>Evento</title>
 </head>
@@ -22,6 +24,20 @@
     include_once ('./backend/actions/configCor.php');
 
     ?>
+
+        <?php 
+            $imagemFundo = mysqli_query($conexao, 'select ImagemFundo from eventos');
+            $imagemFundo = mysqli_fetch_assoc($imagemFundo);
+            $imagemFundo = $imagemFundo['ImagemFundo'];
+
+            echo("<style>
+                .parallax {
+                    background-image: url('$imagemFundo');
+                }
+            </style>");
+
+    
+        ?>
 
     <!--título com efeito parallax de fundo-->
     <div class="parallax"> <?php
@@ -53,6 +69,18 @@
 
         <div class="linha-destaque"></div>
         <div id="div-imagens">
+            <?php 
+                $galeria = mysqli_query($conexao, 'select caminho from galeria');
+                $galeria = mysqli_fetch_all($galeria, MYSQLI_ASSOC);
+                foreach ($galeria as $imagem) {
+                    echo("<a href='{$imagem['caminho']}' data-fancybox>
+                    <img src='{$imagem['caminho']}'>
+                </a>");
+                }
+            
+            ?>
+
+            <!--
             <a href="imagens/galeria/auditorio.jpg" data-fancybox>
                 <img src="imagens/galeria/auditorio.jpg">
             </a>
@@ -68,7 +96,7 @@
             <a href="imagens/galeria/palestra.jpg" data-fancybox>
                 <img src="imagens/galeria/palestra.jpg" alt="Palestra">
             </a>
-            
+            -->
            
             
 

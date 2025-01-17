@@ -7,6 +7,7 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization");
 include_once("../database/conexaoEvento.php");
 
 mysqli_query($conexao, 'DELETE FROM `eventos`');
+mysqli_query($conexao, 'DELETE FROM `galeria`');
 
 $nome_evento = $_POST['nome-evento'];
 $imagem = $_FILES['logo-evento'];
@@ -18,6 +19,70 @@ $oqEsperar = trim($_POST['o-que-esperar']);
 $data = $_POST['data-evento'];
 $hora = $_POST['hora-evento'];
 $taxa = $_POST['taxa-inscricao'];
+$imagem_fundo = $_FILES['imagem-fundo'];
+$imagens_galeria = $_FILES['imagens-galeria'];
+
+if (isset($_FILES['imagens-galeria']) && !empty($_FILES['imagens-galeria']['name'][0])) {
+    // Diretório onde as imagens serão armazenadas
+    $diretorio_destino = '../../imagens/galeria/';
+
+    // Garantir que o diretório de destino existe, se não, criá-lo
+    if (!is_dir($diretorio_destino)) {
+        mkdir($diretorio_destino, 0777, true);
+    }
+
+    // Contar o número de imagens enviadas
+    $total_imagens = count($_FILES['imagens-galeria']['name']);
+
+    // Loop para processar cada imagem
+    for ($i = 0; $i < $total_imagens; $i++) {
+        // Obter informações do arquivo
+        $nome_arquivo = $_FILES['imagens-galeria']['name'][$i];
+        $tmp_arquivo = $_FILES['imagens-galeria']['tmp_name'][$i];
+        $erro = $_FILES['imagens-galeria']['error'][$i];
+        $tamanho = $_FILES['imagens-galeria']['size'][$i];
+        $extensaoGaleria = pathinfo($nome_arquivo, PATHINFO_EXTENSION);
+
+        // Verificar se o upload foi bem-sucedido
+        if ($erro === UPLOAD_ERR_OK) {
+            // Gerar um nome único para o arquivo (evitar sobrescrita)
+            $nome_unico = "img_fundo_$i" . '.' . $extensaoGaleria;
+
+            // Caminho completo de destino
+            $caminho_destino = $diretorio_destino . $nome_unico;
+            $caminhoSql = './imagens/galeria/' . $nome_unico;
+
+
+            // Mover o arquivo para o diretório de destino
+            if (move_uploaded_file($tmp_arquivo, $caminho_destino)) {
+
+                $sql = "insert into galeria (caminho) values ('$caminhoSql')";
+                mysqli_query($conexao, $sql);
+                echo "Imagem {$nome_arquivo} carregada com sucesso!<br>";
+            } else {
+                echo "Erro ao carregar a imagem {$nome_arquivo}.<br>";
+            }
+        } else {
+            echo "Erro no upload do arquivo {$nome_arquivo}. Código de erro: {$erro}.<br>";
+        }
+    }
+} else {
+    echo "Nenhuma imagem foi enviada.";
+}
+
+
+$extensaoFundo = pathinfo($imagem_fundo['name'], PATHINFO_EXTENSION);
+$nomeImagemFundo = 'img_background' . '.' . $extensaoFundo;
+
+// Caminho completo do arquivo
+$caminhoImagemFundo = 'imagens/' . $nomeImagemFundo;
+$caminhoLocalFundo = '../../imagens/' . $nomeImagemFundo;
+
+// Move a imagem para o diretório de upload
+
+move_uploaded_file($imagem_fundo['tmp_name'], $caminhoLocalFundo);
+
+
 
 $extensao = pathinfo($imagem['name'], PATHINFO_EXTENSION);
 $nomeImagem = 'img_logo' . '.' . $extensao;
@@ -31,7 +96,9 @@ $caminhoLocal = '../../imagens/' . $nomeImagem;
     // Insere os dados no banco de dados
 move_uploaded_file($imagem['tmp_name'], $caminhoLocal);
 
-$sql = "INSERT INTO eventos (Titulo, Logo,CorPrimaria,CorSecundaria,CorTerciaria, Descricao, Expectativa, DataInicio, hora, taxa) VALUES ('$nome_evento', '$caminhoImagem', '$corPrimaria', '$corSecundaria', '$corTerciaria', '$sobre', '$oqEsperar', '$data', '$hora', '$taxa')";
+$sql = "INSERT INTO eventos (Titulo, Logo,CorPrimaria,CorSecundaria,CorTerciaria, Descricao, Expectativa, DataInicio, Hora, Taxa, ImagemFundo) VALUES ('$nome_evento', '$caminhoImagem', '$corPrimaria', '$corSecundaria', '$corTerciaria', '$sobre', '$oqEsperar', '$data', '$hora', '$taxa', '$caminhoImagemFundo')";
+echo json_encode($sql);
+
 $result = mysqli_query($conexao, $sql);
 
 $response = [];
@@ -43,7 +110,7 @@ if ($conexao->affected_rows > 0) {
     $response['message'] = 'Falha ao inscrever o usuário.';
 }
 
-echo json_encode($response);
+echo json_encode($sql);
 
 
 ?>
