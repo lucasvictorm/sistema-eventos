@@ -19,11 +19,11 @@
 
         #div-cadastrar{
             text-align: end;
-        }
-        button{
+            
             margin-top: 20px;
         }
 
+                
 
         #btnMais{
             margin: 0;
@@ -71,7 +71,7 @@
 
 
 
-        $sql = "SELECT id, nome FROM avisos";
+        $sql = "SELECT id, nome,data FROM avisos";
       
         $result = $conexao->query($sql);
         // Verificar se há avisos
@@ -179,11 +179,20 @@
             <table id="tabela-opcoes" class="table">
                 
                 <tbody id="lista-de-opcoes">
+                    <thead>
+                        <th>Aviso</th>
+                        <th>Data</th>
+                        <th>Excluir</th>
+                    </thead>
                 <?php
             // Exibir os avisos na tabela
+            
             foreach ($avisos as $aviso) {
+                $dataFormatadaAviso = DateTime::createFromFormat('Y-m-d', $aviso['data'])->format('d/m/Y');
+                
                 echo "<tr data-id='{$aviso['id']}'>
                         <td>{$aviso['nome']}</td>
+                        <td>{$dataFormatadaAviso}</td>
                         <td>
                             <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#e20712' class='lixeira' data-id='{$aviso['id']}'>
                                 <path d='M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z'/>
@@ -203,11 +212,18 @@
         
 
         <!-- Botão de envio -->
-         <div id="div-cadastrar">
-            <button type="submit" class="btn btn-success">Cadastrar Evento</button>
-         </div>
-        
         <p id="aviso-cadastrado">Evento cadastrado</p>
+
+            <div id="div-cadastrar">
+                <div class="btn-group">
+                <a href="./index.php" target="_blank" class="btn btn-primary">Ver site</a>
+                <button type="submit" class="btn btn-success">Cadastrar Evento</button>
+                
+            </div>
+            </div>
+         
+        
+        
     </form>
 </main>
 </body>

@@ -10,23 +10,41 @@ document.getElementById('formulario').addEventListener('submit', async event => 
     event.preventDefault();
     document.getElementById('aviso-cadastrado').style.display = 'block';
     let formulario = document.getElementById('formulario')
-
     let formularioData = new FormData(formulario);
-    
-    // Coletar apenas o nome do aviso (primeiro td)
     let avisos = [];
     let listaDeOpcoes = document.getElementById('lista-de-opcoes');
+
     let trElements = listaDeOpcoes.getElementsByTagName('tr');
     
     for (let tr of trElements) {
-        let aviso = tr.querySelector('td:first-child').textContent; // Pega o primeiro td (nome do aviso)
-        avisos.push(aviso); // Adiciona o nome do aviso à lista
+        let aviso = tr.querySelector('td:first-child').textContent; // Nome do aviso
+        let data = tr.querySelector('td:nth-child(2)').textContent; // Data do aviso
+        avisos.push({ nome: aviso, data: data }); // Adiciona o objeto {nome, data} à lista
     }
 
+    // Adicionar os avisos e datas ao FormData
+    avisos.forEach((aviso, index) => {
+        formularioData.append(`avisos[${index}][nome]`, aviso.nome);
+        formularioData.append(`avisos[${index}][data]`, aviso.data);
+    });
+
+    
+    
+    // Coletar apenas o nome do aviso (primeiro td)
+   
+   
+   
+    /*
+    for (let tr of trElements) {
+        let aviso = tr.querySelector('td:first-child').textContent; // Pega o primeiro td (nome do aviso)
+        avisos.push(aviso); // Adiciona o nome do aviso à lista
+    }*/
+
     // Adicionar os avisos ao FormData
+    /*
     avisos.forEach((aviso, index) => {
         formularioData.append('avisos[]', aviso); // Envia como um array
-    });
+    });*/
 
     fetch('http://localhost:8080/sistema-eventos/backend/actions/cadastrar.php',{
         method: 'POST',
@@ -41,8 +59,16 @@ function adicionarAviso() {
     let aviso = document.getElementById('avisos').value;
     let container = document.getElementById('lista-de-opcoes');
 
+
+    let dataAtual = new Date();
+    let dataFormatada = dataAtual.toLocaleDateString('pt-BR', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+    });
+
     let tr = document.createElement('tr');
-    tr.innerHTML = `<td>${aviso}</td>`;
+    tr.innerHTML = `<td>${aviso}</td> <td>${dataFormatada}</td>`;
 
     let lixeira = document.createElement('td');
     lixeira.innerHTML = `

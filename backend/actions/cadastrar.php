@@ -22,10 +22,13 @@ $hora = $_POST['hora-evento'];
 $taxa = $_POST['taxa-inscricao'];
 $imagem_fundo = $_FILES['imagem-fundo'];
 $imagens_galeria = $_FILES['imagens-galeria'];
+$dataParaBanco = date('d-m'); // Retorna "MM-DD"
+
 
 
 
 if (isset($_POST['avisos']) && !empty($_POST['avisos'])) {
+    
     $avisos = $_POST['avisos']; // Array de avisos enviados
 
     // Preparar a consulta de inserção
@@ -33,11 +36,16 @@ if (isset($_POST['avisos']) && !empty($_POST['avisos'])) {
 
     // Iterar sobre o array de avisos e inserir no banco
     foreach ($avisos as $aviso) {
+        $nome = $aviso['nome']; // Evitar SQL Injection
+        $data = $aviso['data'];
+
+            // Inserir no banco de dados
+            $sql = "INSERT INTO avisos (nome, data) VALUES ('$nome', STR_TO_DATE('$data', '%d/%m/%Y'))";
         // Bind do valor do aviso
         
-    
+    /*
         $sql = "INSERT INTO avisos (nome) VALUES ('$aviso')";
-        echo($sql);
+        echo($sql);*/
         // Executar a consulta
         try {
             mysqli_query($conexao, $sql);
@@ -52,11 +60,6 @@ if (isset($_POST['avisos']) && !empty($_POST['avisos'])) {
 } else {
     echo json_encode(['status' => 'error', 'message' => 'Nenhum aviso enviado.']);
 }
-
-
-
-
-
 
 
 

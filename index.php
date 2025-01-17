@@ -206,6 +206,29 @@
             <h2 class="subtitulo-azul">Avisos</h2>
         </div>
         <div id="div-avisos">
+            <table class="table table-striped" id="tabela-avisos">
+                <thead>
+                    <tr>
+                        <th scope="col">Aviso</th>
+                        <th scope="col">Data</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                        $avisos = mysqli_query($conexao, 'select nome, data from avisos');
+                        $avisos = mysqli_fetch_all($avisos, MYSQLI_ASSOC);
+                        foreach ($avisos as $aviso) {
+                            $dataFormatadaAviso = DateTime::createFromFormat('Y-m-d', $aviso['data'])->format('d/m/Y');
+                            echo("<tr><td>$aviso[nome]</td> <td>$dataFormatadaAviso</td></tr>");
+                        }
+
+                    ?>
+                </tbody>
+
+
+
+            </table>
+            
             
         </div>
 

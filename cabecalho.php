@@ -181,6 +181,9 @@
                 <li><a href="./parceiros.php" class="nav-link">Parceiros</a></li>
               </li>
               <li class="nav-item">
+                <li><a href="./index_artigo.php" class="nav-link">Submeter artigo</a></li>
+              </li>
+              <li class="nav-item">
                 <li><a href="./inscricao.html" id="inscricao" class="nav-link">Inscrição</a></li>
               </li>
               
