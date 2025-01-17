@@ -1,12 +1,36 @@
-
+document.querySelectorAll('.lixeira').forEach(lixeira => {
+    lixeira.addEventListener('click', function() {
+        // Remover o aviso visualmente
+        let tr = this.closest('tr');
+        tr.remove();
+    });
+});
 
 document.getElementById('formulario').addEventListener('submit', async event => {
     event.preventDefault();
+    document.getElementById('aviso-cadastrado').style.display = 'block';
     let formulario = document.getElementById('formulario')
+
+    let formularioData = new FormData(formulario);
+    
+    // Coletar apenas o nome do aviso (primeiro td)
+    let avisos = [];
+    let listaDeOpcoes = document.getElementById('lista-de-opcoes');
+    let trElements = listaDeOpcoes.getElementsByTagName('tr');
+    
+    for (let tr of trElements) {
+        let aviso = tr.querySelector('td:first-child').textContent; // Pega o primeiro td (nome do aviso)
+        avisos.push(aviso); // Adiciona o nome do aviso à lista
+    }
+
+    // Adicionar os avisos ao FormData
+    avisos.forEach((aviso, index) => {
+        formularioData.append('avisos[]', aviso); // Envia como um array
+    });
 
     fetch('http://localhost:8080/sistema-eventos/backend/actions/cadastrar.php',{
         method: 'POST',
-        body: new FormData(formulario)
+        body: formularioData
     }
     ).then(response => response.json())
     .then(data => console.log(data))
@@ -37,5 +61,5 @@ function adicionarAviso() {
     tr.appendChild(lixeira);
     container.appendChild(tr);
 
-    console.log(aviso);
+    
 }

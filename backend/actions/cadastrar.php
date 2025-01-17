@@ -8,6 +8,7 @@ include_once("../database/conexaoEvento.php");
 
 mysqli_query($conexao, 'DELETE FROM `eventos`');
 mysqli_query($conexao, 'DELETE FROM `galeria`');
+mysqli_query($conexao, 'DELETE FROM `avisos`');
 
 $nome_evento = htmlspecialchars($_POST['nome-evento'], ENT_QUOTES, 'UTF-8');
 $imagem = $_FILES['logo-evento'];
@@ -21,6 +22,45 @@ $hora = $_POST['hora-evento'];
 $taxa = $_POST['taxa-inscricao'];
 $imagem_fundo = $_FILES['imagem-fundo'];
 $imagens_galeria = $_FILES['imagens-galeria'];
+
+
+
+if (isset($_POST['avisos']) && !empty($_POST['avisos'])) {
+    $avisos = $_POST['avisos']; // Array de avisos enviados
+
+    // Preparar a consulta de inserção
+    
+
+    // Iterar sobre o array de avisos e inserir no banco
+    foreach ($avisos as $aviso) {
+        // Bind do valor do aviso
+        
+    
+        $sql = "INSERT INTO avisos (nome) VALUES ('$aviso')";
+        echo($sql);
+        // Executar a consulta
+        try {
+            mysqli_query($conexao, $sql);
+        } catch (PDOException $e) {
+            // Se ocorrer um erro na inserção de um aviso, você pode continuar ou parar, dependendo do que deseja
+            echo "Erro ao inserir o aviso: " . $e->getMessage();
+        }
+    }
+
+    // Retornar resposta ao frontend
+    echo json_encode(['status' => 'success', 'message' => 'Avisos cadastrados com sucesso.']);
+} else {
+    echo json_encode(['status' => 'error', 'message' => 'Nenhum aviso enviado.']);
+}
+
+
+
+
+
+
+
+
+
 
 if (isset($_FILES['imagens-galeria']) && !empty($_FILES['imagens-galeria']['name'][0])) {
     // Diretório onde as imagens serão armazenadas

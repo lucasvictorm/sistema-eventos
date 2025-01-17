@@ -10,6 +10,7 @@
         main{
             max-width: 600px;
             margin: auto;
+            margin-bottom: 20px;
         }
 
         h1{
@@ -46,6 +47,14 @@
             margin-bottom: 20px;
             display: none;
         }
+
+        #avisos-container>p{
+            margin-top: 20px;
+        }
+
+        td{
+            width: 100%;
+        }
     </style>
   </head>
 
@@ -59,6 +68,20 @@
 
         $resultado = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
         $resultado = $resultado[0];
+
+
+
+        $sql = "SELECT id, nome FROM avisos";
+      
+        $result = $conexao->query($sql);
+        // Verificar se há avisos
+        $avisos = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $avisos[] = $row; // Adiciona cada aviso no array
+            }
+}
+
     ?>
     <main>
 
@@ -139,7 +162,7 @@
             <label for="taxa-inscricao">Taxa de inscrição (R$):</label>
             <input type="number" id="taxa-inscricao" value="<?= $resultado['Taxa']?>" name="taxa-inscricao" class="form-control" placeholder="Digite o valor da inscrição" step="0.01" min="0">
         </div>
-        <!--
+        
         <div class="row" >
             <label for="avisos">Avisos</label>
             <div class="input-group">
@@ -152,18 +175,30 @@
         </div>
 
         <div id="avisos-container">
-            Avisos adicionados pelo usuário 
+            <p>Avisos adicionados pelo usuário </p>
             <table id="tabela-opcoes" class="table">
                 
                 <tbody id="lista-de-opcoes">
-                  
+                <?php
+            // Exibir os avisos na tabela
+            foreach ($avisos as $aviso) {
+                echo "<tr data-id='{$aviso['id']}'>
+                        <td>{$aviso['nome']}</td>
+                        <td>
+                            <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#e20712' class='lixeira' data-id='{$aviso['id']}'>
+                                <path d='M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z'/>
+                            </svg>
+                        </td>
+                    </tr>";
+            }
+            ?>
 
                 </tbody>
 
               </table>
         </div>
 
-        -->
+        
           
         
 
