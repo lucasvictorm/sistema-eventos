@@ -4,11 +4,13 @@ body {
     padding: 0;
     background-color: #f8f9fa;
     color: #333;
+    ;
 }
 
 .container {
     max-width: 800px;
     margin: 50px auto;
+    margin-top: 300px;
     padding: 20px;
     background: #fff;
     border-radius: 8px;
@@ -62,6 +64,6 @@ a {
     text-decoration: none;
 }
 
-a:hover {
-    text-decoration: underline;
+.links{
+    z-index: 0;
 }

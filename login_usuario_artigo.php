@@ -29,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
     <title>Login Usuário</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
 <body>
     <div class="container">
@@ -37,17 +38,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p class="erro"><?php echo $erro; ?></p>
         <?php endif; ?>
         <form action="login_usuario_artigo.php" method="POST" class="form">
+
+            <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" name="email" id="email" placeholder="Email" required>
+            <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
+            </div>
 
-            <label for="senha">Senha:</label>
-            <input type="password" name="senha" id="senha" placeholder="Senha" required>
-
+            
+            <div class="form-group">
+                <label for="senha">Senha:</label>
+                <input type="password" name="senha" class="form-control" id="senha" placeholder="Senha" required>
+            </div>
             <button type="submit">Entrar</button>
         </form>
         <div style="margin-top: 20px;">
             <!-- Botão Voltar -->
-            <a href="index_artigo.php" class="button">Voltar</a>
+            <a href="index_artigo.php" class="button btn btn-primary"  >Voltar</a>
         </div>
     </div>
 </body>
