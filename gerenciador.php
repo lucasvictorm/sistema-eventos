@@ -1,3 +1,15 @@
+<?php
+session_start();
+require 'conexao_artigo.php';
+
+// Verifica se o administrador está logado
+if (!isset($_SESSION['usuario_id']) || $_SESSION['role'] !== 'admin') {
+    header('Location: index_artigo.php');
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -13,7 +25,8 @@
             margin-bottom: 20px;
         }
 
-        h1{
+        #cadastro-titulo{
+            margin-top: 10px;
             text-align: center;
         }
 
@@ -55,11 +68,18 @@
         td{
             width: 100%;
         }
+
+        @media (max-width: 768px){
+            #formulario{
+                padding: 0 10px;
+            }
+        }
     </style>
   </head>
 
 <body>
     <?php 
+    include_once('./adm.php');
     
         include_once('./backend/database/conexaoEvento.php');
 
@@ -85,7 +105,7 @@
     ?>
     <main>
 
-    <h1>Cadastro de Evento</h1>
+    <h1 id="cadastro-titulo">Cadastro de Evento</h1>
     <form id="formulario" enctype="multipart/form-data">
         <!-- Nome do evento -->
         <div class="form-group">

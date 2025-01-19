@@ -2,8 +2,14 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Orbitron:wght@400..900&display=swap');
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
+margin: 0;
+font-family: Arial, sans-serif;
+}
+
+#div-pai-header{
+    position: fixed;
+    top: 0;
+    width: 100vw;
 }
 
 .site-header {
@@ -19,19 +25,24 @@ body {
     align-items: center;
     gap: 15px;
 }
-.titulo{
-    color:#0080b9;
+#titulo-cabecalho{
+    color: var(--tertiary-color);
     font-family: "Orbitron", serif;
 }
 
 .logo {
-    height: 90px;
+    width: 230px;
+    height: 120px;
 }
 
 .site-nav {
     background-color: var(--primary-color);
     padding: 20px 0;
     text-align: center;
+}
+
+#nav-lista{
+    gap: 10px;
 }
 
 .nav-list {
@@ -60,6 +71,16 @@ body {
     background-color: var(--secondary-color);
 }
 
+#inscricao{
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+
+    
+}
+
+#inscricao:hover{
+    color: white;
+}
 
 @media (max-width: 768px) {
     .site-header {
@@ -93,3 +114,4 @@ body {
 }
 
 }
+
