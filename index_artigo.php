@@ -46,6 +46,7 @@
         <label for="arquivo">Arquivo</label>
         <input type="file" name="arquivo" id="arquivo" class="form-control" accept=".pdf,.doc,.docx" required>
     </div>
+            <p id="status-submissao"></p>
             <button type="submit" class="btn btn-primary">Submeter Artigo</button>
         </form>
         <div class="links">
@@ -71,16 +72,21 @@
         method: 'POST',
         body: formData
     })
-    .then(response => response.text())  // A resposta do servidor
+    .then(response => response.json())  // A resposta do servidor
     .then(data => {
-        if (data.error) {
-            alert(data.error);
-            return;
+        let status = document.getElementById('status-submissao');
+        if(data.error) {
+           
+            status.style.color = 'red';
+            status.innerText = 'Senha inválida para este email';
+            
+            
         }else if(data.success){
-            alert(data.success);
+            status.style.color = 'green';
+            status.innerText = 'Artigo submetido com sucesso';
         }
         // Exibe o retorno do servidor (sucesso ou erro)
-       console.log(data);
+       
         // Pode adicionar uma lógica para limpar o formulário ou redirecionar após o sucesso
     })
     .catch(error => {

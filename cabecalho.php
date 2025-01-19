@@ -36,7 +36,7 @@
             align-items: center;
             gap: 15px;
         }
-        .titulo{
+        #titulo-cabecalho{
             color: var(--tertiary-color);
             font-family: "Orbitron", serif;
         }
@@ -149,7 +149,7 @@
             
         </div>
         <div id="separador"></div>
-        <div class="titulo" id="tituloCabecalho">
+        <div id="titulo-cabecalho" id="tituloCabecalho">
             <?php
              $titulo = mysqli_query($conexao, 'select Titulo from eventos');
                 $titulo = mysqli_fetch_assoc($titulo);

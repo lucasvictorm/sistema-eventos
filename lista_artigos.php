@@ -38,45 +38,69 @@ $artigos = $pdo->query("SELECT a.id, a.titulo, a.resumo, a.arquivo, u.nome AS au
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/lista_artigos.css">
     <title>Lista de Artigos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
 <body>
     <div class="container">
         <h1>Todos os Artigos</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Título</th>
-                    <th>Resumo</th>
-                    <th>Autor</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($artigos as $artigo): ?>
+
+        <div>
+            <table class="table">
+                <thead>
                     <tr>
-                        <td><?php echo htmlspecialchars($artigo['titulo']); ?></td>
-                        <td><?php echo htmlspecialchars($artigo['resumo']); ?></td>
-                        <td><?php echo htmlspecialchars($artigo['autor']); ?></td>
-                        <td>
-                            <a href="<?php echo $artigo['arquivo']; ?>" download>Baixar</a>
-                            <form action="lista_artigos.php" method="POST" style="display:inline;">
-                                <input type="hidden" name="id" value="<?php echo $artigo['id']; ?>">
-                                <button type="submit" name="excluir">Excluir</button>
-                            </form>
-                        </td>
+                        <th>Total de Artigos</th>
+                        <th>Total de Autores</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><?php echo count($artigos); ?></td>
+                        <td><?php echo count(array_unique(array_column($artigos, 'autor'))); ?></td>
+                        
+                    </tr>
+                </tbody>
+                
+            </table>
+        </div>
+        
+        <div id="div-artigos">
+            <table id="artigos" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Resumo</th>
+                        <th>Autor</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($artigos as $artigo): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($artigo['titulo']); ?></td>
+                            <td><?php echo htmlspecialchars($artigo['resumo']); ?></td>
+                            <td id="autor"> <?php echo htmlspecialchars($artigo['autor']); ?></td>
+                            <td id="acoes">
+                                <a class="btn btn-success" href="<?php echo $artigo['arquivo']; ?>" download>Baixar</a>
+                                <form action="lista_artigos.php" method="POST" style="display:inline;">
+                                    <input type="hidden" name="id" value="<?php echo $artigo['id']; ?>">
+                                    <button class="btn btn-danger" type="submit" name="excluir">Excluir</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+        
         <div style="margin-top: 20px;">
             <!-- Botão Voltar -->
-            <a href="index_artigo.php" class="button">Voltar</a>
+            <a href="index_artigo.php" class="btn-primary btn">Voltar</a>
         </div>
     </div>
 </body>
